@@ -28,3 +28,19 @@
 1. I created a User Model: This is like a blueprint for how your users' data will be stored in the database
 2. I created a User Controlleras well: This will help you manage what happens with your user data (like adding a new user or getting their information).
 3. I also enabled and configured Multer: Multer will allows my app to accept and store files (such as images) uploaded by users.
+
+
+
+### Milestone 5:
+
+1. I created a signup page and linked the sign up page to the login page so that it is easy to traverse.
+
+
+
+### Milestone 6:
+
+1. I used to JWT token to create an activation for users. This holds basic user information.
+2. Also learnt how to send a URL with the token via email.
+3. I also used nodemailer to send verification emails and created an endpoint to verify the user.
+
+

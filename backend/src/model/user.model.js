@@ -18,8 +18,8 @@ const userSchema = new mongoose.Schema({
     ],
     role: {type:String,require:true},
     avatar: {
-        url:{type:String,require:true},
-        public_id:{type:String,require:true},
+        url:{type:String},
+        public_id:{type:String},
     },
     resetPasswordToken: String,
     resetPasswordTime: Date,
