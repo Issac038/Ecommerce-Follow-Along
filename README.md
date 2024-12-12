@@ -7,6 +7,7 @@
 
 
 ### Milestone 2: Backend and Frontend
+
 1. I created a folder called frontend within which we first created a react file and also installed dependencies and connected the tailwindcss using postCSS. On this folder I created two more folders:
     1. Authorization
     2. Signup

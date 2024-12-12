@@ -1,4 +1,22 @@
+import {useState} from 'react';
+import { Link } from 'react-router-dom';
+
 function LogingUser() {
+    const [credentials,setCreds] = useState({
+        email:'',
+        password:'',
+    });
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        console.log(name, value);
+        setCreds({
+          ...credentials,
+          [name]: value,
+        });
+      };
+      const handleClickLogin = () => {
+        
+      };
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
@@ -17,6 +35,10 @@ function LogingUser() {
                         <input
                             type="email"
                             id="email"
+                            autoComplete="email"
+                            required
+                            value = {credentials.email}
+                            onChange={handleChange}
                             placeholder="e.g. user@example.com"
                             className="w-full px-4 py-2 text-sm border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300"
                         />
@@ -31,6 +53,8 @@ function LogingUser() {
                         <input
                             type="password"
                             id="password"
+                            required
+                            onChange={handleChange}
                             placeholder="Enter your password"
                             className="w-full px-4 py-2 text-sm border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300"
                         />
@@ -41,13 +65,10 @@ function LogingUser() {
                     >
                         Login
                     </button>
-                </form>
-                <p className="text-sm text-center text-gray-600">
-                    Don’t have an account?{' '}
-                    <a href="/signup" className="text-blue-600 hover:underline">
-                        Sign up
-                    </a>
+                    <p className="text-sm text-center text-gray-600">
+                    Don’t have an account ? <Link to={'/signup'}>Sign up</Link>
                 </p>
+                </form>
             </div>
         </div>
     );
