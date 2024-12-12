@@ -22,6 +22,7 @@
 1. Today I set up a database and a server by using Express and Mongodb-Atlas. I also configured the server to listen on a designated port.
 2. I also created a error handling folder for better debugging.
 
+
 ### Milestone 4:
 
 1. I created a User Model: This is like a blueprint for how your users' data will be stored in the database
