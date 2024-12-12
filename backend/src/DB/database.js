@@ -11,7 +11,7 @@ const connectDatabase = ()=>{
     .then((data=>{
         console.log(`DB connected successfully:${data.connection.host}`);
     }))
-    .catch((err)=>console.log("DB connection failed..",err.message))
+    .catch((err)=>console.log("DB connection failed..",error.message))
 };
 
 module.exports = connectDatabase
