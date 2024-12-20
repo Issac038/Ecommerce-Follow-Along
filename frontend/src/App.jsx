@@ -1,5 +1,5 @@
-import LogingUser from './components/Authorization/Login';
-import SignupUser from './components/Authorization/Signup';
+import LoginPage from './components/Authorization/Login';
+import SignupForm from './components/Authorization/Signup';
 import {Routes,Route}from 'react-router-dom'
 
 function App(){
@@ -9,9 +9,9 @@ function App(){
      {/* <LogingUser /> */}
      {/* <SignupUser/>*/}
       <Routes>
-        <Route path="/" />
-        <Route path="/signup" element={<SignupUser/>}/>
-        <Route path="/login" element={<LogingUser/>} />
+        <Route path="/" element ={<h1>Home Page</h1>} />
+        <Route path="/signup" element={<SignupForm/>}/>
+        <Route path="/login" element={<LoginPage/>} />
       </Routes>
      </>
   )
