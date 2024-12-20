@@ -44,3 +44,11 @@
 3. I also used nodemailer to send verification emails and created an endpoint to verify the user.
 
 
+
+### Milestone 7:
+
+1. I learned to use bcrypt to encrypt the users password and saved the hashed password in the database instead of plain text.
+2. Created a endoint which fetches user data from database on provided emial/username
+3. Validated password by comparing the user’s entered password with the hashed password stored in the database using bcrypt. If they match, proceed with authentication; otherwise, an error is sent.
+
+
