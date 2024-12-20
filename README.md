@@ -52,3 +52,7 @@
 3. Validated password by comparing the user’s entered password with the hashed password stored in the database using bcrypt. If they match, proceed with authentication; otherwise, an error is sent.
 
 
+
+### Milestone 8
+
+In this milestone, we created the HomePage Layout and the Card component with props for product name.
