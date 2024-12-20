@@ -1,20 +1,18 @@
-
 const express = require('express');
-const  CreateUSer  = require('../controllers/user.controller.js');
-const upload = require('../middleware/multer.js');
-
+const upload = require('../middlewares/multer.js');
+const {
+  CreateUSer,
+  verifyUserController,
+  signup,
+  login,
+} = require('../controllers/user.controller.js');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 router.post('/create-user', upload.single('file'), CreateUSer);
-router.get('activation/:token',async(req,res)=>{
-    const { token } = req.params;
-    try{
-        if(verifyUser(token)){
-            return res.status(200).cookie();
-        }
-    return res.status(403).send({message:"token expired"})
-    }catch (er) {
-        return res.status(403).send({message: er.message})
-    }
-})
-module.exports = router
+router.get('/activation/:token', verifyUserController);
+
+router.post('/signup', signup);
+router.post('/login', login);
+
+module.exports = router;
