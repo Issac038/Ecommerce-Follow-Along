@@ -69,5 +69,4 @@
 
 ### MileStone 10
 1. Made a product Schema
-2. Created an end point to wirte the data into DB.
-    i.Cloudinary, mult
+2. Created an end point to wirte the data into DB - Cloudinary, mult
