@@ -50,7 +50,7 @@ const createProductController = async (req, res) => {
           success: false,
         });
       }
-  
+      console.log(er);
       return res.status(500).send({ message: er.message, success: false });
     }
   };

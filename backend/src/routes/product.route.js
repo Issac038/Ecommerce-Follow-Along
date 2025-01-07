@@ -4,7 +4,7 @@ const express = require('express');
 const {
     createProductController,
     getProductDataController,
-} = require('./controllers/product.controller.js');
+} = require('../controllers/product.controller.js');
 const router = express.Router()
 
 router.post('/create-product',
