@@ -55,8 +55,8 @@
 
 ### Milestone 8
 
-1. Card Componet
-2. Display of all the products with dummy data in Home page.
+1.  Made the card componet
+2. Created a display of all the products with dummy data in Home page.
 
 
 
