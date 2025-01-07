@@ -55,4 +55,24 @@
 
 ### Milestone 8
 
-In this milestone, we created the HomePage Layout and the Card component with props for product name.
+1. Card Componet
+2. Display of all the products with dummy data in Home page.
+
+
+
+### Milestone 9
+
+1. Created Product Entry Form
+2. Used form data to send the data over the network call.
+
+
+
+### MileStone 10
+
+1. Product Schema
+2. Create end point to wirte the data into DB - Cloudinary and Multer
+
+
+
+### Milestone 11
+1. Wrote an endpoint to fetch all products from the database and send to client.
