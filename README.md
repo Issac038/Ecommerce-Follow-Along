@@ -68,5 +68,11 @@
 
 
 ### MileStone 10
-1. Made a product Schema
-2. Created an end point to wirte the data into DB - Cloudinary, mult
+
+1. Product Schema
+2. Create end point to wirte the data into DB - Cloudinary and Multer
+
+
+
+### Milestone 11
+1. Wrote an endpoint to fetch all products from the database and send to client.
