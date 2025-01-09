@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import {Link } from 'react-router-dom'
 
-function Card({ title, image, description, discountedPrice, originalPrice, rating, id }) {
+function Card({ title, image, description, discountedPrice, originalPrice, rating, id, handleDelete }) {
   // Component logic
   return (
     <div className="w-72 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
@@ -53,6 +53,12 @@ function Card({ title, image, description, discountedPrice, originalPrice, ratin
           </button>
           </Link>
         </div>
+        <button
+        className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors duration-200"
+        onClick={() => handleDelete(id)}
+      >
+        🗑️
+      </button>
       </div>
     </div>
   );
