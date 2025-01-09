@@ -13,5 +13,6 @@ router.post('/create-product',
 );
 
 router.get('/get-products',  getProductDataController)
+router.put("/update-products", upload.array('files',5),updateProductController)
 
 module.exports = router;
