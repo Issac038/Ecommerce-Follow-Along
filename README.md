@@ -92,3 +92,9 @@
 
 1. Backend: PUT route for updating
 2. Frontend: Page for auto filling the updated data
+
+
+### Milestone 14
+
+1. Created a handleDelete button
+2. Made a button to delete a singular object
