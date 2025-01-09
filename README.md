@@ -75,4 +75,20 @@
 
 
 ### Milestone 11
+
 1. Wrote an endpoint to fetch all products from the database and send to client.
+
+
+
+### Milestone 12
+
+1. Fetched products from backend using axios
+2. useEffect to load products
+3. Used Card component to display products with details
+
+
+
+### Milestone 13 (Updation)
+
+1. Backend: PUT route for updating
+2. Frontend: Page for auto filling the updated data
