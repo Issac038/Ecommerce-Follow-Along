@@ -1,7 +1,7 @@
-const multer = require("multer");
-const cloudinary = require("../utils/cloudinary.js");
-const fs = require("fs");
-const ProductModel = require("../model/Product.model.js");
+const multer = require('multer');
+const cloudinary = require('../utils/cloudinary.js');
+const fs = require('fs');
+const ProductModel = require('../model/Product.model.js');
 
 const createProductController = async (req, res) => {
   const {
@@ -13,13 +13,13 @@ const createProductController = async (req, res) => {
     quantity,
     category,
   } = req.body;
-  console.log(process.env.cloud_name);
 
   try {
+    console.log(req.files, req.body);
     const arrayImage = req.files.map(async (singleFile, index) => {
       return cloudinary.uploader
         .upload(singleFile.path, {
-          folder: "uploads",
+          folder: 'uploads',
         })
         .then((result) => {
           fs.unlinkSync(singleFile.path);
@@ -27,9 +27,7 @@ const createProductController = async (req, res) => {
         });
     });
 
-    console.log(req.body,1)
     const dataImages = await Promise.all(arrayImage);
-    console.log(req.body,2)
     const StoreProductDetails = await ProductModel.create({
       title,
       description,
@@ -39,10 +37,10 @@ const createProductController = async (req, res) => {
       quantity,
       category,
       images: dataImages,
+      userEmail: req.userEmailAddress,
     });
-    console.log(req.body,3)
     return res.status(201).send({
-      message: "Image Successfully Uploaded",
+      message: 'Image Successfully Uploaded',
       sucess: true,
       dataImages,
       StoreProductDetails,
@@ -50,7 +48,7 @@ const createProductController = async (req, res) => {
   } catch (er) {
     if (er instanceof multer.MulterError) {
       return res.status(400).send({
-        message: "Multer error plese send image less than 5 ",
+        message: 'Multer error plese send image less than 5 ',
         success: false,
       });
     }
@@ -58,23 +56,23 @@ const createProductController = async (req, res) => {
     return res.status(500).send({ message: er.message, success: false });
   }
 };
+// controller
 
 const getProductDataController = async (req, res) => {
   try {
     const data = await ProductModel.find();
     return res
       .status(200)
-      .send({
-        data,
-        message: "Product Data Retrieved Successfully",
-        success: true,
-      });
+      .send({ data, message: 'Data Fetched Successfully', success: true });
   } catch (er) {
+    // 500
+
     return res.status(500).send({ message: er.message, success: false });
   }
 };
 
 const updateProductController = async (req, res) => {
+  console.log(req.files);
   const {
     title,
     description,
@@ -83,30 +81,34 @@ const updateProductController = async (req, res) => {
     originalPrice,
     quantity,
     category,
-    xyz,
-    abc,
   } = req.body;
   const { id } = req.params;
 
   try {
     const checkIfProductExists = await ProductModel.findOne({ _id: id });
+    // {
+    //   name:"xyz"
+    // } truthy
 
+    // {}  falsy
     if (!checkIfProductExists) {
-      return res.status(404).send({ message: "Product Not Found" });
+      return res.status(404).send({ message: 'Product Not Found' });
     }
 
-    const arrayImage = req.files.map(async (singleFile, index) => {
-      return cloudinary.uploader
-        .upload(singleFile.path, {
-          folder: "uploads",
-        })
-        .then((result) => {
-          fs.unlinkSync(singleFile.path);
-          return result.url;
-        });
-    });
-    const Imagedata = await Promise.all(arrayImage);
-
+    const arrayImage =
+      req.files &&
+      req.files.map(async (singleFile, index) => {
+        return cloudinary.uploader
+          .upload(singleFile.path, {
+            folder: 'uploads',
+          })
+          .then((result) => {
+            fs.unlinkSync(singleFile.path);
+            return result.url;
+          });
+      });
+    const Imagedata = req.files && (await Promise.all(arrayImage));
+    const UpdatedImages = req.files ? Imagedata : req.body.images;
     const findAndUpdate = await ProductModel.findByIdAndUpdate(
       { _id: id },
       {
@@ -117,7 +119,7 @@ const updateProductController = async (req, res) => {
         originalPrice,
         quantity,
         category,
-        images: Imagedata,
+        images: UpdatedImages,
       },
       {
         new: true,
@@ -125,11 +127,12 @@ const updateProductController = async (req, res) => {
     );
 
     return res.status(201).send({
-      message: "Document Updated Successfully",
+      message: 'Document Updated Successfully',
       success: true,
       UpdatedResult: findAndUpdate,
     });
   } catch (er) {
+    console.log(er.message);
     return res.status(500).send({ message: er.message, success: false });
   }
 };
@@ -140,12 +143,12 @@ const getSinglePRoductDocumentController = async (req, res) => {
     const data = await ProductModel.findOne({ _id: id });
     console.log(data);
     if (!data) {
-      return res.status(404).send({ Message: "Product Not Found" });
+      return res.status(404).send({ Message: 'Product Not Found' });
     }
 
     return res
       .status(200)
-      .send({ message: "Product Successfully fetched", data, success: true });
+      .send({ message: 'Product Successfully fetched', data, success: true });
   } catch (er) {
     return res.status(500).send({ message: er.message, success: false });
   }
@@ -153,18 +156,18 @@ const getSinglePRoductDocumentController = async (req, res) => {
 
 const deleteSingleProduct = async (req, res) => {
   const { id } = req.params;
-  console.log("id", id);
+  console.log('id', id);
   try {
     const data = await ProductModel.findOne({ _id: id });
     console.log(data);
     if (!data) {
-      return res.status(404).send({ Message: "Product Not Found" });
+      return res.status(404).send({ Message: 'Product Not Found' });
     }
 
     await ProductModel.findByIdAndDelete({ _id: id });
     const newData = await ProductModel.find();
     return res.status(200).send({
-      message: "Product Successfully fetched",
+      message: 'Product Successfully fetched',
       data: newData,
       success: true,
     });
@@ -173,7 +176,6 @@ const deleteSingleProduct = async (req, res) => {
   }
 };
 
-// controller
 module.exports = {
   createProductController,
   getProductDataController,

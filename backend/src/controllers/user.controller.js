@@ -3,13 +3,15 @@ const UserModel = require("../model/user.model.js");
 const transporter = require("../utils/sendmail.js");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cloudinary = require('../utils/cloudinary.js')
+const fs = require('fs')
 
 require("dotenv").config({
   path: "../configurations.env",
 });
 
 async function CreateUSer(req, res) {
-  const { name, email, password } = req.body;
+  const { Name, email, password } = req.body;
   const CheckUserPresent = await UserModel.findOne({
     email: email,
   });
@@ -25,7 +27,7 @@ async function CreateUSer(req, res) {
   }
 
   const newUser = new UserModel({
-    name: Name,
+    Name: Name,
     email: email,
     password: password,
   });
