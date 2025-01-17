@@ -113,3 +113,11 @@
 
 1. Added a Single Page product details 
 2. Created Image Modal Component
+
+
+
+### Milestone 17
+
+1. Cart Schema
+2. Cart route
+3. Cart Controller [get and addToCart]

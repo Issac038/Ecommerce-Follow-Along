@@ -12,7 +12,7 @@ function ProductEntryPage() {
     category: '',
   });
   const [errorInput, setInputError] = useState('');
-  const [Images, setImages] = useState(null);
+  const [Images, setImages] = useState([]);
 
   const handleImageUpload = (e) => {
     const ImagesArray = Array.from(e.target.files);
@@ -29,8 +29,8 @@ function ProductEntryPage() {
     });
     console.log(formData);
   };
- 
-  const handleSubmit = async (e) => {
+
+   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
     console.log(Images);
@@ -61,19 +61,25 @@ function ProductEntryPage() {
     formDataBody.append('originalPrice', originalPrice);
     formDataBody.append('quantity', quantity);
     formDataBody.append('rating', rating);
-
+    formDataBody.append('token', localStorage.getItem('token'));
+    console.log(Images);
     Images.map((ele) => {
       formDataBody.append('files', ele);
     });
 
     console.log(formDataBody);
     // axios request post
-     await axios
-      .post('http://localhost:8080/product/create-product', formDataBody, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
+    const token = localStorage.getItem('token');
+    await axios
+      .post(
+        `http://localhost:8080/product/create-product?token=${token}`,
+        formDataBody,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
         return res;
@@ -192,3 +198,4 @@ function ProductEntryPage() {
 }
 
 export default ProductEntryPage;
+

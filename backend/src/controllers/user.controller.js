@@ -1,23 +1,23 @@
-const ErrorHandler = require("../utils/ErrorHandler.js");
-const UserModel = require("../model/user.model.js");
-const transporter = require("../utils/sendmail.js");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const cloudinary = require('../utils/cloudinary.js')
-const fs = require('fs')
-
-require("dotenv").config({
-  path: "../configurations.env",
+const UserModel = require('../model/user.model.js');
+const ErrorHandler = require('../utils/ErrorHandler.js');
+const transporter = require('../utils/sendmail.js');
+const jwt = require('jsonwebtoken'); //tokenisation of user data (every communication that happend between server(beknd) and client(ft))
+const bcrypt = require('bcrypt'); //hashes the password only
+const cloudinary = require('../utils/cloudinary.js');
+const fs = require('fs');
+require('dotenv').config({
+  path: '../configurations/.env',
 });
 
 async function CreateUSer(req, res) {
   const { Name, email, password } = req.body;
+
   const CheckUserPresent = await UserModel.findOne({
     email: email,
   });
 
   if (CheckUserPresent) {
-    const error = new ErrorHandler("User is already present in database", 400);
+    const error = new ErrorHandler('Already Present in DB', 400);
 
     return res.status(404).send({
       message: error.message,
@@ -40,21 +40,22 @@ async function CreateUSer(req, res) {
 
   const token = generateToken(data);
   await transporter.sendMail({
-    to: "issaclyndon@gmail.com",
-    from: "issaclyndon@gmail.com",
-    subject: "Verification email for the e-commerce site",
-    text: "Text",
-    html: `<h1>Hello world http://localhost:5173/activation/${token}</h1>`,
+    to: 'naayaankumar@gmail.com',
+    from: 'naayaankumar@gmail.com',
+    subject: 'verification email from follow along project',
+    text: 'Text',
+    html: `<h1>Hello world   http://localhost:5173/activation/${token} </h1>`,
   });
 
   await newUser.save();
-  return res.send("User Created Successfully");
+
+  return res.send('User Created Successfully');
 }
 
 const generateToken = (data) => {
   // jwt
   const token = jwt.sign(
-    { name: data.name, email: data.email },
+    { name: data.name, email: data.email, id: data.id },
     process.env.SECRET_KEY
   );
   return token;
@@ -74,10 +75,10 @@ async function verifyUserController(req, res) {
     if (verifyUser(token)) {
       return res
         .status(200)
-        .cookie("token", token)
+        .cookie('token', token)
         .json({ token, success: true });
     }
-    return res.status(403).send({ message: "token expired" });
+    return res.status(403).send({ message: 'token expired' });
   } catch (er) {
     return res.status(403).send({ message: er.message });
   }
@@ -88,9 +89,19 @@ const signup = async (req, res) => {
   try {
     const checkUserPresentinDB = await UserModel.findOne({ email: email });
     if (checkUserPresentinDB) {
-      return res.status(403).send({ message: "User already present" });
+      return res.status(403).send({ message: 'User already present' });
     }
+    console.log(req.file, process.env.cloud_name);
+    const ImageAddress = await cloudinary.uploader
+      .upload(req.file.path, {
+        folder: 'uploads',
+      })
+      .then((result) => {
+        fs.unlinkSync(req.file.path);
+        return result.url;
+      });
 
+    console.log('url', ImageAddress);
     bcrypt.hash(password, 10, async function (err, hashedPassword) {
       try {
         if (err) {
@@ -100,9 +111,13 @@ const signup = async (req, res) => {
           Name: name,
           email,
           password: hashedPassword,
+          avatar: {
+            url: ImageAddress,
+            public_id: `${email}_public_id`,
+          },
         });
 
-        return res.status(201).send({ message: "User created successfully.." });
+        return res.status(201).send({ message: 'User created successfully..' });
       } catch (er) {
         return res.status(500).send({ message: er.message });
       }
@@ -110,6 +125,7 @@ const signup = async (req, res) => {
 
     //
   } catch (er) {
+    console.log(er);
     return res.status(500).send({ message: er.message });
   }
 };
@@ -133,10 +149,11 @@ const login = async (req, res) => {
         };
         const token = generateToken(data);
 
-        return res
-          .status(200)
-          .cookie("token", token)
-          .send({ message: "User logged in successfully..", success: true });
+        return res.status(200).cookie('token', token).send({
+          message: 'User logged in successfully..',
+          success: true,
+          token,
+        });
       }
     );
 
@@ -145,10 +162,10 @@ const login = async (req, res) => {
     return res.status(403).send({ message: er.message, success: false });
   }
 };
-module.exports = {
-  CreateUSer,
-  login,
-  verifyUserController,
+
+module.exports = { 
+  CreateUSer, 
+  verifyUserController, 
   signup,
-  verifyUser
+  login,
 };
