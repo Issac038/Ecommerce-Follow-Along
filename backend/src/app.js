@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const userRouter=require('./routes/user.routes.js');
 const productRouter = require('./routes/product.route.js')
+const cartRouter = require('./routes/cart.route.js')
 
 if(process.env.nODE_ENV !== 'PRODUCTION'){  
     require('dotenv').config({
@@ -26,5 +27,6 @@ app.get("/",(req,res)=>{
 
 app.use("/user",userRouter)
 app.use('/product',productRouter)
+app.use('/cart',cartRouter)
 
 module.exports = app;
