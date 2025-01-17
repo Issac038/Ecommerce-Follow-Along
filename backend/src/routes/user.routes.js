@@ -1,5 +1,5 @@
 const express = require('express');
-const upload = require('../middleware/multer.js');
+const multer = require('multer')
 const {
   CreateUSer,
   verifyUserController,
@@ -7,6 +7,7 @@ const {
   login,
 } = require('../controllers/user.controller.js');
 const jwt = require('jsonwebtoken');
+const upload = multer({dest:'temp-uploads/'})
 const router = express.Router();
 
 router.post('/create-user', upload.single('file'), CreateUSer);

@@ -94,6 +94,7 @@
 2. Frontend: Page for auto filling the updated data
 
 
+
 ### Milestone 14
 
 1. Created a handleDelete button
@@ -104,3 +105,11 @@
 ### Milestone 15
 
 1. Added a navbar component
+2. Fixed the cors issue
+
+
+
+### Milestone 16
+
+1. Added a Single Page product details 
+2. Created Image Modal Component
