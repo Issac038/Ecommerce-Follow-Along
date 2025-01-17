@@ -98,3 +98,9 @@
 
 1. Created a handleDelete button
 2. Made a button to delete a singular object
+
+
+
+### Milestone 15
+
+1. Added a navbar component

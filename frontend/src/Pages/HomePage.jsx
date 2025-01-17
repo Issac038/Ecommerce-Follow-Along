@@ -9,7 +9,7 @@ function HomePage() {
       'http://localhost:8080/product/get-products'
     );
     setdata(response.data.data);
-    // console.log(response);
+    console.log(response);
   };
 
   useEffect(() => {
