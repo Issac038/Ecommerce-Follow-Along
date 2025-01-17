@@ -1,6 +1,6 @@
 if(process.env.nODE_ENV !== 'PRODUCTION'){  
     require('dotenv').config({
-        path:'./src/configurations/.env'
+        path:'./configurations/.env'
     });
 }
 
