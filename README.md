@@ -121,3 +121,9 @@
 1. Cart Schema
 2. Cart route
 3. Cart Controller [get and addToCart]
+
+
+
+### Milestone 18
+
+1. Get Cart Data Route
