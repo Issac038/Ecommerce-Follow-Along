@@ -127,3 +127,11 @@
 ### Milestone 18
 
 1. Get Cart Data Route
+
+
+
+### Milestone 19
+
+1. Created cart frontend page and display the products
+2. For each product added an option to increase and decrease quantity using + and - buttons.
+3. Created a Backend endpoint for increase and decrease quantity
