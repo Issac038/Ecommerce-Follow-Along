@@ -1,10 +1,12 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function LoginPage() {
   const [credentials, setCreds] = useState({
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
     console.log(name, value);
@@ -13,9 +15,17 @@ function LoginPage() {
       [name]: value,
     });
   };
-//   const handleClickLogin = () => {
-     // axios request
-//   };
+  const handleClickLogin = async (e) => {
+    // axios request to backend
+    e.preventDefault();
+    const response = await axios.post(
+      'http://localhost:8080/user/login',
+      credentials
+    );
+    localStorage.setItem('token', response.data.token);
+    console.log(response.data);
+    navigate('/');
+  };
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -31,7 +41,7 @@ function LoginPage() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" onSubmit={handleClickLogin}>
           <div>
             <label
               htmlFor="email"
@@ -101,3 +111,6 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
+// 1. naming for the folder and variable should be sesible and unique
+// 2. Name of the fucntiona component should follow the name and page written it.
