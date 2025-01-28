@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router";
 
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
+
+import axios from 'axios';
 function UpdateForm() {
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
+    title: '',
+    description: '',
     rating: 0,
     discountedPrice: 0,
     originalPrice: 0,
     quantity: 0,
-    category: "",
+    category: '',
   });
-  const [errorInput, setInputError] = useState("");
+  const [errorInput, setInputError] = useState('');
   const [Images, setImages] = useState();
 
   const handleImageUpload = (e) => {
@@ -22,7 +23,7 @@ function UpdateForm() {
     setImages(ImagesArray);
   };
   const handleChange = (e) => {
-    setInputError("");
+    setInputError('');
     const { name, value } = e.target;
     console.log(name, value);
     setFormData({
@@ -52,36 +53,36 @@ function UpdateForm() {
       quantity <= 0 ||
       category.length <= 0
     ) {
-      return setInputError("Enter The Information Inside Feilds Correctly...");
+      return setInputError('Enter The Information Inside Feilds Correctly...');
     }
     let formDataBody = new FormData();
-    formDataBody.append("title", title);
-    formDataBody.append("description", description);
-    formDataBody.append("category", category);
-    formDataBody.append("discountedPrice", discountedPrice);
-    formDataBody.append("originalPrice", originalPrice);
-    formDataBody.append("quantity", quantity);
-    formDataBody.append("rating", rating);
+    formDataBody.append('title', title);
+    formDataBody.append('description', description);
+    formDataBody.append('category', category);
+    formDataBody.append('discountedPrice', discountedPrice);
+    formDataBody.append('originalPrice', originalPrice);
+    formDataBody.append('quantity', quantity);
+    formDataBody.append('rating', rating);
     console.log(Images);
     if (Images) {
       Images?.map((ele) => {
-        formDataBody.append("files", ele);
+        formDataBody.append('files', ele);
       });
     } else {
-      formDataBody.append("images", formData.images);
+      formDataBody.append('images', formData.images);
     }
 
-    console.log("formDataBody", formDataBody);
-    console.log("Images", Images);
-    console.log("formData.images", formData);
+    console.log('formDataBody', formDataBody);
+    console.log('Images', Images);
+    console.log('formData.images', formData);
     // axios request post
-    await axios
+    let requestdata = await axios
       .put(
         `http://localhost:8080/product/update-products/${id}`,
         formDataBody,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         }
       )
@@ -90,7 +91,7 @@ function UpdateForm() {
         return res;
       })
       .catch((er) => {
-        console.log("error", er);
+        console.log('error', er);
         return er;
       });
 
@@ -113,7 +114,7 @@ function UpdateForm() {
       console.log(singleData);
       setFormData(singleData.data.data);
       // setImages(singleData.data.data.images);
-      console.log("Images", Images);
+      console.log('Images', Images);
     };
 
     getDataForId();
@@ -121,7 +122,7 @@ function UpdateForm() {
   return (
     <div
       className="flex justify-center items-center border border-black"
-      style={{ height: "100vh" }}
+      style={{ height: '100vh' }}
     >
       <form onSubmit={handleSubmit}>
         <div>
@@ -217,3 +218,13 @@ function UpdateForm() {
 }
 
 export default UpdateForm;
+
+/* 
+
+
+
+
+
+
+
+*/
