@@ -5,7 +5,6 @@ if(process.env.nODE_ENV !== 'PRODUCTION'){
 }
 const mongoose = require('mongoose')
 const connectDatabase = ()=>{
-
     mongoose
     .connect(process.env.DB_URL)
     .then((data=>{
@@ -14,4 +13,4 @@ const connectDatabase = ()=>{
     .catch((err)=>console.log("DB connection failed..",error.message))
 };
 
-module.exports = connectDatabase
+module.exports = connectDatabase;
