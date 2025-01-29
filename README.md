@@ -132,6 +132,12 @@
 
 ### Milestone 19
 
-1. Created cart frontend page and display the products
-2. For each product added an option to increase and decrease quantity using + and - buttons.
-3. Created a Backend endpoint for increase and decrease quantity
+1. Created cart UI
+2. Fetched Cart Details of the User
+
+
+
+### Milestone 20
+
+1. Added UI for profile route
+2. Created route for user data

@@ -5,6 +5,6 @@ const transporter = nodemailer.createTransport({
         user: 'issac.antony@kalium.community',
         pass: 'phvp qkgl ptic twum',
     },
-    });
+});
 
 module.exports = transporter;
