@@ -1,8 +1,8 @@
 const UserModel = require('../model/user.model.js');
 const ErrorHandler = require('../utils/ErrorHandler.js');
 const transporter = require('../utils/sendmail.js');
-const jwt = require('jsonwebtoken'); 
-const bcrypt = require('bcrypt'); 
+const jwt = require('jsonwebtoken'); //tokenisation of user data (every communication that happend between server(beknd) and client(ft))
+const bcrypt = require('bcrypt'); //hashes the password only
 const cloudinary = require('../utils/cloudinary.js');
 const fs = require('fs');
 const { default: mongoose } = require('mongoose');
@@ -32,13 +32,12 @@ async function CreateUSer(req, res) {
     email: email,
     password: password,
   });
-  
+
   const data = {
     Name,
     email,
     password,
   };
-
   const token = generateToken(data);
   await transporter.sendMail({
     to: 'issaclyndon@gmail.com',
@@ -54,7 +53,7 @@ async function CreateUSer(req, res) {
 }
 
 const generateToken = (data) => {
-
+  // jwt
   const token = jwt.sign(
     { name: data.name, email: data.email, id: data.id },
     process.env.SECRET_KEY
@@ -124,6 +123,7 @@ const signup = async (req, res) => {
       }
     });
 
+    //
   } catch (er) {
     console.log(er);
     return res.status(500).send({ message: er.message });
@@ -138,7 +138,7 @@ const login = async (req, res) => {
       password,
       checkUserPresentinDB.password,
       function (err, result) {
-
+        // result == true
         if (err) {
           return res.status(403).send({ message: er.message, success: false });
         }
@@ -183,10 +183,42 @@ const getUSerData = async (req, res) => {
   }
 };
 
+const AddAddressController = async (req, res) => {
+  const userId = req.UserId;
+  const { city, country, address1, address2, zipCode, addressType } = req.body;
+  try {
+    const userFindOne = await UserModel.findOne({ _id: userId });
+    if (!userFindOne) {
+      return res
+        .status(404)
+        .send({ message: 'User not found', success: false });
+    }
+
+    const userAddress = {
+      country,
+      city,
+      address1,
+      address2,
+      zipCode,
+      addressType,
+    };
+
+    userFindOne.address.push(userAddress);
+    const response = await userFindOne.save();
+
+    return res
+      .status(201)
+      .send({ message: 'User Address Added', success: true, response });
+  } catch (er) {
+    return res.status(500).send({ message: er.message });
+  }
+};
+
 module.exports = {
   CreateUSer,
   verifyUserController,
   signup,
   login,
   getUSerData,
+  AddAddressController,
 };
