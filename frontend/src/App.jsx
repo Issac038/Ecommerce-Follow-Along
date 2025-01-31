@@ -4,12 +4,12 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import ProductEntryPage from './Pages/ProductEntryPage';
 import UpdateForm from './Pages/UpdateForm';
-// import Navbar from './component/Navbar/navbar';
 import SinglePageProduct from './Pages/SingleProductPage';
 import CartPage from './Pages/CartPage';
 import ProfilePage from './Pages/Profile';
 import Navbar from './components/Navbar/Navbar';
 import AddressCard from './components/AddressComp/AddressCard';
+import SelectAddres from './Pages/SelectAddresspage';
 
 function App() {
   return (
@@ -24,6 +24,8 @@ function App() {
         <Route path="/product-details/:id" element={<SinglePageProduct />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/add-address" element={<AddressCard />} />
+        <Route path="/select-address" element={<SelectAddres />} />
       </Routes>
     </>
   );

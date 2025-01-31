@@ -1,7 +1,7 @@
-import{ useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CartCard from '../components/ProductCard/CartCard';
-
+import { Link } from 'react-router-dom';
 function CardPage() {
   const [UsersCartData, setUsersCartData] = useState([]);
 
@@ -22,6 +22,11 @@ function CardPage() {
   }, []);
   return (
     <div>
+      <Link to={`/select-address`}>
+        <button className="bg-slate-800 text-white px-5 py-2 rounded-md ml-40">
+          Checkout
+        </button>
+      </Link>
       {UsersCartData?.map((singleCartObject, index) => {
         return (
           <div key={index}>
@@ -33,7 +38,7 @@ function CardPage() {
               originalPrice={singleCartObject.productId.originalPrice}
               discountedPrice={singleCartObject.productId.discountedPrice}
               id={singleCartObject.productId._id}
-              createdBy={'nayan@k.com'}
+              createdBy={'issac@l.com'}
             />
           </div>
         );
