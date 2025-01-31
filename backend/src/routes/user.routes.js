@@ -7,6 +7,8 @@ const {
   login,
   getUSerData,
   AddAddressController,
+  DeleteAddyController,
+  GetAddressConroller,
 } = require('../controllers/user.controller.js');
 const jwt = require('jsonwebtoken');
 const verifyUser = require('../middleware/jwt-verify.js');
@@ -23,4 +25,7 @@ router.get('/user-data', verifyUser, getUSerData);
 
 router.post('/add-address', verifyUser, AddAddressController);
 
+router.delete('/delete-address/:id', verifyUser, DeleteAddyController);
+
+router.get('/get-addresses', verifyUser, GetAddressConroller);
 module.exports = router;
