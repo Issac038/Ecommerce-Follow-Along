@@ -146,5 +146,35 @@
 
 ### Milestone 21
 
-1. Creted page for the Address city, country, address1, address2, adderss3 and address type.
+1. Created page for the Address city, country, address1, address2, adderss3 and address type.
 2. Wrote the end point for the backend to receive and store it in the backend
+
+
+
+### Milestone 22
+
+1. Created a backend endpoint that stores the address inside user profile in database.
+
+
+
+### Milestone 23
+
+1. Created a select address page in frontend.
+2. Wrote product schema for the orders in the backend.
+
+
+
+### Milestone 24
+
+1. Created a order conformation page in frontend which displays products ordered, address selected and total price details.
+
+
+
+### Milestone 25
+
+1. Created a backend endpoint that will help in placing the order.
+
+
+
+### Milestone 26
+
