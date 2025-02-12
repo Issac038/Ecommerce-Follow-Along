@@ -178,3 +178,10 @@
 
 ### Milestone 26
 
+1. Created a backend endpoint that will help getting all the orders of the user.
+
+
+
+### Milestone 27
+
+1. Created a frontend page that will display all the user orders.
