@@ -185,3 +185,10 @@
 ### Milestone 27
 
 1. Created a frontend page that will display all the user orders.
+
+
+
+### Milestone 28
+
+1. Added a cancel button in my-orders and created a backend endpoint for cancel order.
+2. Now user can cancel a placed order.
