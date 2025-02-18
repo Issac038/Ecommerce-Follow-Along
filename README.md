@@ -192,3 +192,11 @@
 
 1. Added a cancel button in my-orders and created a backend endpoint for cancel order.
 2. Now user can cancel a placed order.
+
+
+
+###Milestone 29
+
+1. Added the razorpay api.
+
+
