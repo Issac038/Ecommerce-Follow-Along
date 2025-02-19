@@ -192,3 +192,19 @@
 
 1. Added a cancel button in my-orders and created a backend endpoint for cancel order.
 2. Now user can cancel a placed order.
+
+
+
+### Milestone 29
+
+
+
+### Milestone 30
+
+
+
+### Milestone 31
+
+
+
+### Milestone 32
