@@ -210,12 +210,8 @@
 
 ### Milestone 31
 
-
-
-### Milestone 32
-
-1. You can dispatch actions to update the email state and read the email state from Redux.
-
+1. In store.js file configure an store with userReducer function that will handle global user email state.
+2. Inside userActions.js file write an function called setEmail that will help in storing email state inside global state.
 
 
 ### Milestone 32
