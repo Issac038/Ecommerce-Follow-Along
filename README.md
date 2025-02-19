@@ -197,9 +197,14 @@
 
 ### Milestone 29
 
+1. Added the razorpay api.
+
 
 
 ### Milestone 30
+
+1. Contnuation of milestone 29.
+2. Implemented online payment using razorpay.
 
 
 
@@ -208,3 +213,20 @@
 
 
 ### Milestone 32
+
+1. You can dispatch actions to update the email state and read the email state from Redux.
+
+
+
+### Milestone 32
+
+1. In Login page we will use Dispatch method to store the mail inside global state
+2. In all the remaining pages acc the mail stored in global state using useSelector
+
+
+
+### Milestone 33
+
+1. Used sign method to create a JWT token with mail and ID.
+2. Gave maxAge to set expire time.
+3. Added cookie inside response that helps u store it in the browser.
