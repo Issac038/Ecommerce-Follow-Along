@@ -210,6 +210,10 @@
 
 ### Milestone 31
 
+
+
+### Milestone 32
+
 1. You can dispatch actions to update the email state and read the email state from Redux.
 
 
