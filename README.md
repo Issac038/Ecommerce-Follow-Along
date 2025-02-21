@@ -219,7 +219,22 @@
 1. In Login page we will use Dispatch method to store the mail inside global state
 2. In all the remaining pages acc the mail stored in global state using useSelector
 
+### Milestone 33
 
+1. Created a JWT token.
+2. Created a cookie inside token.
+
+
+### Milestone 34
+
+1. Extract JWT token from cookie and send to server
+2. Validate JWT token
+
+
+### Miestone 35
+
+1. Deployed frontend
+2. Deployed Backend
 
 ### Milestone 33
 
