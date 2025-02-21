@@ -236,8 +236,3 @@
 1. Deployed frontend
 2. Deployed Backend
 
-### Milestone 33
-
-1. Used sign method to create a JWT token with mail and ID.
-2. Gave maxAge to set expire time.
-3. Added cookie inside response that helps u store it in the browser.
