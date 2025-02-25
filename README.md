@@ -203,7 +203,7 @@
 
 ### Milestone 30
 
-1. Contnuation of milestone 29.
+1. Continuation of milestone 29.
 2. Implemented online payment using razorpay.
 
 
